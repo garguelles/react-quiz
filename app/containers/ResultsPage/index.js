@@ -7,8 +7,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Button from 'components/Button';
+import { P } from 'components/Text';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectResults } from './selectors';
+import { Wrapper } from './styles';
 
 export class ResultsPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -27,11 +29,11 @@ export class ResultsPage extends React.PureComponent { // eslint-disable-line re
     const { correctAnswers, timeElapsed } = this.props.results;
 
     return (
-      <div>
-        <p>Correct Answers: {correctAnswers}</p>
-        <p>Time Elapsed: {timeElapsed} seconds</p>
-        <Button onClick={this.startQuiz}>Play Again</Button>
-      </div>
+      <Wrapper>
+        <P size="1.8em" margin="0 0 10px 0">Correct Answers: {correctAnswers}</P>
+        <P size="1.8em" margin="0 0 10px 0">Time Elapsed: {timeElapsed} seconds</P>
+        <Button onClick={this.startQuiz} size="2em">Play Again</Button>
+      </Wrapper>
     );
   }
 }

@@ -34,7 +34,9 @@ export default class HomePage extends React.PureComponent {
       <Wrapper justify="center" column>
         <Box width={1 / 1} px="1em">
           <Content>
-            <Button onClick={this.startQuiz}>Start Quiz</Button>
+            <Button onClick={this.startQuiz} inline size="2em">
+              Start Quiz
+            </Button>
           </Content>
         </Box>
       </Wrapper>

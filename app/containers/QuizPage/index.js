@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import SweetAlert from 'sweetalert-react';
 import Button from 'components/Button';
+import { H1 } from 'components/Text';
 import makeSelectQuizPage, { makeSelectQuestions } from './selectors';
 import { getQuestions, setAnswer, setResults } from './actions';
 import Question from './Question';
@@ -66,10 +67,10 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
 
     return (
       <div>
-        <h1>Quiz</h1>
+        <H1 margin="0 0 40px 0" center>Quiz</H1>
         { this.renderQuestions() }
         <div>
-          <Button onClick={this.submitQuiz}>Submit</Button>
+          <Button onClick={this.submitQuiz} size="2em">Submit</Button>
         </div>
       </div>
     );

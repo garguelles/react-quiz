@@ -5,7 +5,13 @@
  */
 
 import React, { PureComponent, PropTypes } from 'react';
+import styled from 'styled-components';
+import { P } from 'components/Text';
 import { RadioButton, RadioGroup } from 'react-radio-buttons';
+
+const Wrapper = styled.div`
+  margin-bottom: 30px;
+`;
 
 class Question extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -35,7 +41,7 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
     const choices = this.props.choices;
 
     return choices.map((c, i) => (
-      <RadioButton key={i} value={c}>{c}</RadioButton>
+      <RadioButton rootColor="#aaa" key={i} value={c}>{c}</RadioButton>
     ));
   }
 
@@ -47,12 +53,12 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
 
   render() {
     return (
-      <div>
-        <p dangerouslySetInnerHTML={{__html: this.props.question}} />
-        <RadioGroup value="" onChange={this.onChange}>
+      <Wrapper>
+        <P margin="0 0 15px 0" size="1.6em" dangerouslySetInnerHTML={{__html: this.props.question}} />
+        <RadioGroup value="" onChange={this.onChange} style={{ fontSize: '16px' }}>
           {this.renderChoices()}
         </RadioGroup>
-      </div>
+      </Wrapper>
     );
   }
 }

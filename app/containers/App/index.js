@@ -30,6 +30,7 @@ import {
   makeSelectApp,
 } from './selectors';
 import AppNavTrigger from './AppNavTrigger';
+import { Container } from './styles';
 
 injectTapEventPlugin();
 
@@ -59,7 +60,9 @@ class App extends React.PureComponent {
               <meta property="og:description" content="REPLACE" />
               <meta property="og:img" content={ogImg} />
             </Helmet>
-            {React.Children.toArray(this.props.children)}
+            <Container>
+              {React.Children.toArray(this.props.children)}
+            </Container>
           </main>
         </MuiThemeProvider>
       </ThemeProvider>
