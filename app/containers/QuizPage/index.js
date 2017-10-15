@@ -8,12 +8,18 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import SweetAlert from 'sweetalert-react';
 import Button from 'components/Button';
 import makeSelectQuizPage from './selectors';
 import { getQuestions, setAnswer } from './actions';
 import Question from './Question';
 
 class QuizPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  state = {
+    showAlert: false,
+    correctAnswers: 0,
+  }
 
   componentWillMount() {
     this.props.getQuestions();
@@ -26,7 +32,21 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   submitQuiz = () => {
-    alert('submit');
+    const answers = this.props.QuizPage.ui.answers;
+    const questions = this.props.QuizPage.data.questions;
+
+    if (answers.length < questions.length) {
+      return alert('please answer all questions');
+    }
+
+    const correctAnswers = answers
+      .map((a) => (a.correctAnswer === a.answer))
+      .filter((i) => (i === true)).length;
+
+    this.setState({
+      showAlert: true,
+      correctAnswers
+    });
   }
 
   render() {
@@ -36,11 +56,17 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
 
     return (
       <div>
-        <h1>Yo</h1>
+        <h1>Quiz</h1>
         { this.renderQuestions() }
         <div>
           <Button onClick={this.submitQuiz}>Submit</Button>
         </div>
+        <SweetAlert
+          show={this.state.showAlert}
+          title="Results"
+          text={`Correct Answers: ${this.state.correctAnswers} Time Elapsed: 0`}
+          onConfirm={() => this.setState({ showAlert: false })}
+        />
       </div>
     );
   }

@@ -20,7 +20,7 @@ const initialState = fromJS({
 });
 
 function quizPageReducer(state = initialState, action) {
-  let answerIndex = false;
+  let answerIndex = -1;
 
   switch (action.type) {
     case GET_QUESTIONS_FULFILLED:
@@ -28,7 +28,6 @@ function quizPageReducer(state = initialState, action) {
 
     case SET_ANSWER:
       answerIndex = state.getIn(['ui', 'answers']).findIndex((a) => {
-        console.log('the a', a);
         return a.get('questionId') === action.payload.questionId
       });
 
