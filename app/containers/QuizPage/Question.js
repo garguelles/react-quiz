@@ -34,11 +34,9 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
   renderChoices() {
     const choices = this.props.incorrect_answers.concat([this.props.correct_answer]);
 
-    const choicesComponent = choices.map((c, i) => (
+    return choices.map((c, i) => (
       <RadioButton key={i} value={c}>{c}</RadioButton>
     ));
-
-    return this.shuffle(choicesComponent);
   }
 
   onChange = (e) => {
@@ -49,7 +47,7 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
     return (
       <div>
         <p dangerouslySetInnerHTML={{__html: this.props.question}} />
-        <RadioGroup onChange={this.onChange} vertical>
+        <RadioGroup value="" onChange={this.onChange} vertical>
           {this.renderChoices()}
         </RadioGroup>
       </div>

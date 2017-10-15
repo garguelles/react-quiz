@@ -11,28 +11,40 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  ui: {},
+  ui: {
+    answers: [],
+  },
   data: {
     questions: [],
   },
 });
 
 function quizPageReducer(state = initialState, action) {
+  let answerIndex = false;
+
   switch (action.type) {
     case GET_QUESTIONS_FULFILLED:
       return state.setIn(['data', 'questions'], fromJS(action.payload.questions));
 
     case SET_ANSWER:
-      return state.setIn(
-        ['data', 'questions'],
-        state.getIn(['data', 'questions']).update(
-          state.getIn(['data', 'questions']).findIndex((item) => {
-            return item.get('id') === action.payload.questionId;
-          }), (item) => {
-            return item.set('answer', action.payload.answer);
-          }
+      answerIndex = state.getIn(['ui', 'answers']).findIndex((a) => {
+        console.log('the a', a);
+        return a.get('questionId') === action.payload.questionId
+      });
+
+      if (answerIndex !== -1) {
+        return state.setIn(
+          ['ui', 'answers'],
+          state.getIn(['ui', 'answers']).update(
+            answerIndex,
+            (item) => {
+              return item.set('answer', action.payload.answer);
+            }
+          )
         )
-      );
+      }
+
+      return state.updateIn(['ui', 'answers'], (answers) => answers.push(fromJS(action.payload)));
 
     default:
       return state;
