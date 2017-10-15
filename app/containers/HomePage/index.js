@@ -29,7 +29,7 @@ export default class HomePage extends React.PureComponent {
       <Wrapper justify="center" column>
         <Box width={1 / 1} px="1em">
           <Content>
-            <Button>Play</Button>
+            <Button>Start Quiz</Button>
           </Content>
         </Box>
       </Wrapper>

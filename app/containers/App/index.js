@@ -48,12 +48,12 @@ class App extends React.PureComponent {
         <MuiThemeProvider muiTheme={muiTheme}>
           <main>
             <Helmet>
-              <title>iStack Holdings React Boilerplate Starter</title>
+              <title>Quiz App</title>
               <meta
                 name="description"
-                content="React boilerplate for iStack sites"
+                content="React boilerplate"
               />
-              <meta property="og:title" content="iStack Holdings" />
+              <meta property="og:title" content="Quiz App" />
               <meta property="og:type" content="website" />
               <meta property="og:url" content="REPLACE" />
               <meta property="og:description" content="REPLACE" />
