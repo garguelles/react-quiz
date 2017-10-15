@@ -25,6 +25,9 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
+    if (this.props.QuizPage.data.questions.length === 0) {
+      return (<p> Loading Questions </p>);
+    }
     return (
       <div>
         <h1>Yo</h1>
