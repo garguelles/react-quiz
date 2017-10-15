@@ -10,17 +10,25 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import makeSelectQuizPage from './selectors';
 import { getQuestions } from './actions';
+import Question from './Question';
 
-export class QuizPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class QuizPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
     this.props.getQuestions();
+  }
+
+  renderQuestions() {
+    return this.props.QuizPage.data.questions.map(q => (
+      <Question key={q.id} {...q} />
+    ));
   }
 
   render() {
     return (
       <div>
         <h1>Yo</h1>
+        { this.renderQuestions() }
       </div>
     );
   }
