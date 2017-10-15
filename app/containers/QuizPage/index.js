@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import makeSelectQuizPage from './selectors';
-import { getQuestions } from './actions';
+import { getQuestions, setAnswer } from './actions';
 import Question from './Question';
 
 class QuizPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -20,7 +20,7 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
 
   renderQuestions() {
     return this.props.QuizPage.data.questions.map(q => (
-      <Question key={q.id} {...q} />
+      <Question key={q.id} setAnswer={this.props.setAnswer} {...q} />
     ));
   }
 
@@ -28,6 +28,7 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
     if (this.props.QuizPage.data.questions.length === 0) {
       return (<p> Loading Questions </p>);
     }
+
     return (
       <div>
         <h1>Yo</h1>
@@ -48,6 +49,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     getQuestions: bindActionCreators(getQuestions, dispatch),
+    setAnswer: bindActionCreators(setAnswer, dispatch),
   };
 }
 

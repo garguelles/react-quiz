@@ -7,6 +7,7 @@
 import {
   GET_QUESTIONS,
   GET_QUESTIONS_FULFILLED,
+  SET_ANSWER,
 } from './constants';
 
 export function getQuestions() {
@@ -19,5 +20,12 @@ export function getQuestionsFulfilled(questions) {
   return {
     type: GET_QUESTIONS_FULFILLED,
     payload: { questions },
+  };
+}
+
+export function setAnswer(questionId, answer) {
+  return {
+    type: SET_ANSWER,
+    payload: { questionId, answer },
   };
 }
