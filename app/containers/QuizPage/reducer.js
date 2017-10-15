@@ -6,15 +6,20 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  GET_QUESTIONS_FULFILLED,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  ui: {},
+  data: {
+    questions: [],
+  },
+});
 
 function quizPageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case GET_QUESTIONS_FULFILLED:
+      return state.setIn(['data', 'questions'], fromJS(action.payload.questions));
     default:
       return state;
   }
