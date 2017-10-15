@@ -15,31 +15,9 @@ const Wrapper = styled.div`
 
 class Question extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-  // shuffle choices
-  /*shuffle(array) {
-    let currentIndex = array.length,
-      temporaryValue = 0,
-      randomIndex = 0;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }*/
-
   renderChoices() {
     const choices = this.props.choices;
-
+    console.log(choices[0]);
     return choices.map((c, i) => (
       <RadioButton rootColor="#aaa" key={i} value={c}>{c}</RadioButton>
     ));

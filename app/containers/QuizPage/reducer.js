@@ -29,7 +29,13 @@ function quizPageReducer(state = initialState, action) {
 
   switch (action.type) {
     case GET_QUESTIONS_FULFILLED:
-      return state.setIn(['data', 'questions'], fromJS(action.payload.questions));
+      return state
+        .setIn(['data', 'questions'], fromJS(action.payload.questions))
+        .setIn(['ui', 'answers'], fromJS(action.payload.questions.map((q) => ({
+          questionId: q.id,
+          answer: q.choices[0],
+          correctAnswer: q.correct_answer,
+        }))));
 
     case SET_ANSWER:
       answerIndex = state.getIn(['ui', 'answers']).findIndex((a) => {
