@@ -39,8 +39,10 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
     ));
   }
 
-  onChange = (e) => {
-    this.props.setAnswer(this.props.id, e);
+  onChange = (answer) => {
+    const { id, correct_answer } = this.props;
+
+    this.props.setAnswer(id, answer, correct_answer);
   }
 
   render() {

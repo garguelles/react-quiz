@@ -39,7 +39,7 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
         <h1>Yo</h1>
         { this.renderQuestions() }
         <div>
-          <Button onSubmit={this.submitQuiz}>Submit</Button>
+          <Button onClick={this.submitQuiz}>Submit</Button>
         </div>
       </div>
     );

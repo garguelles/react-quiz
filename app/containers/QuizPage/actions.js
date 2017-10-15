@@ -23,9 +23,9 @@ export function getQuestionsFulfilled(questions) {
   };
 }
 
-export function setAnswer(questionId, answer) {
+export function setAnswer(questionId, answer, correctAnswer) {
   return {
     type: SET_ANSWER,
-    payload: { questionId, answer },
+    payload: { questionId, answer, correctAnswer },
   };
 }
