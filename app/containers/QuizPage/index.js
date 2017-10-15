@@ -19,6 +19,13 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
   state = {
     showAlert: false,
     correctAnswers: 0,
+    timeElapsed: 0,
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({ timeElapsed: this.state.timeElapsed + 1 });
+    }, 1000);
   }
 
   componentWillMount() {
@@ -43,9 +50,10 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
       .map((a) => (a.correctAnswer === a.answer))
       .filter((i) => (i === true)).length;
 
+    clearInterval(this.timer);
     this.props.setResults({
       correctAnswers,
-      timeElapsed: 0,
+      timeElapsed: this.state.timeElapsed,
     });
 
     this.props.router.push('/results');

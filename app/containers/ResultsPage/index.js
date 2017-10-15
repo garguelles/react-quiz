@@ -11,14 +11,20 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectResults } from './selectors';
 
 export class ResultsPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  startQuiz = () => {
+    // use window.location.replace to clear all state
+    window.location.replace('/quiz');
+  }
+
   render() {
     const { correctAnswers, timeElapsed } = this.props.results;
 
     return (
       <div>
         <p>Correct Answers: {correctAnswers}</p>
-        <p>Time Elapsed: {timeElapsed}</p>
-        <Button>Play Again</Button>
+        <p>Time Elapsed: {timeElapsed} seconds</p>
+        <Button onClick={this.startQuiz}>Play Again</Button>
       </div>
     );
   }
