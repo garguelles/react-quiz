@@ -18,7 +18,6 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
     return (
       <MainWrapper>
         <Content>
-          <Logo />
           <H2 margin="20px 0">Page not found!</H2>
           <Button to="/">Go back to homepage</Button>
         </Content>

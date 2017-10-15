@@ -8,7 +8,6 @@ export const MainWrapper = styled.section`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: ${colors.black[0]} url(${bg}) center;
   background-size: cover;
   color: ${colors.white[0]};
 `;
