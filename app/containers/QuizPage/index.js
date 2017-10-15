@@ -29,6 +29,10 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
     }, 1000);
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   componentWillMount() {
     this.props.getQuestions();
   }

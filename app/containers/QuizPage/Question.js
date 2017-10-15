@@ -43,7 +43,7 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
     return (
       <Wrapper>
         <P margin="0 0 15px 0" size="1.6em" dangerouslySetInnerHTML={{__html: this.props.question}} />
-        <RadioGroup vertical value="" onChange={this.onChange} style={{ fontSize: '16px' }}>
+        <RadioGroup value="" onChange={this.onChange} style={{ fontSize: '16px' }}>
           {this.renderChoices()}
         </RadioGroup>
       </Wrapper>
