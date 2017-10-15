@@ -17,7 +17,7 @@ export function* getQuestions() {
 
     // add unique ids
     const questions = response.data.results.map((q) => {
-      return Object.assign({}, q, { id: randomstring.generate(8), answer: '' });
+      return Object.assign({}, q, { id: randomstring.generate(8) });
     });
 
     yield put(getQuestionsFulfilled(questions));

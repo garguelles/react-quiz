@@ -47,7 +47,7 @@ class Question extends React.Component { // eslint-disable-line react/prefer-sta
     return (
       <div>
         <p dangerouslySetInnerHTML={{__html: this.props.question}} />
-        <RadioGroup value="" onChange={this.onChange} vertical>
+        <RadioGroup value="" onChange={this.onChange}>
           {this.renderChoices()}
         </RadioGroup>
       </div>
