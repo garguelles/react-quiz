@@ -11,7 +11,9 @@ const selectQuizPageDomain = () => (state) => state.get('quizPage');
 
 const makeSelectResults = () => createSelector(
   selectQuizPageDomain(),
-  (substate) => substate.getIn(['ui', 'results']).toJS()
+  (substate) => {
+    return substate ? substate.getIn(['ui', 'results']).toJS() : false;
+  }
 );
 
 

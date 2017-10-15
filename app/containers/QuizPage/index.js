@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import SweetAlert from 'sweetalert-react';
 import Button from 'components/Button';
-import makeSelectQuizPage from './selectors';
+import makeSelectQuizPage, { makeSelectQuestions } from './selectors';
 import { getQuestions, setAnswer, setResults } from './actions';
 import Question from './Question';
 
@@ -33,14 +33,14 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   renderQuestions() {
-    return this.props.QuizPage.data.questions.map(q => (
+    return this.props.questions.map(q => (
       <Question key={q.id} setAnswer={this.props.setAnswer} {...q} />
     ));
   }
 
   submitQuiz = () => {
     const answers = this.props.QuizPage.ui.answers;
-    const questions = this.props.QuizPage.data.questions;
+    const questions = this.props.questions;
 
     if (answers.length < questions.length) {
       return alert('please answer all questions');
@@ -60,7 +60,7 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
-    if (this.props.QuizPage.data.questions.length === 0) {
+    if (this.props.questions.length === 0) {
       return (<p> Loading Questions </p>);
     }
 
@@ -82,6 +82,7 @@ QuizPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   QuizPage: makeSelectQuizPage(),
+  questions: makeSelectQuestions(),
 });
 
 function mapDispatchToProps(dispatch) {

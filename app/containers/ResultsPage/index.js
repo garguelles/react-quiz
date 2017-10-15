@@ -12,6 +12,12 @@ import { makeSelectResults } from './selectors';
 
 export class ResultsPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
+  componentWillMount() {
+    if (!this.props.results) {
+      this.props.router.push('/');
+    }
+  }
+
   startQuiz = () => {
     // use window.location.replace to clear all state
     window.location.replace('/quiz');
@@ -32,7 +38,7 @@ export class ResultsPage extends React.PureComponent { // eslint-disable-line re
 
 ResultsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  results: PropTypes.object,
+  results: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]), // false if visited directly from url
 };
 
 const mapStateToProps = createStructuredSelector({
