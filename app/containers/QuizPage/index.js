@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import SweetAlert from 'sweetalert-react';
 import Button from 'components/Button';
 import makeSelectQuizPage from './selectors';
-import { getQuestions, setAnswer } from './actions';
+import { getQuestions, setAnswer, setResults } from './actions';
 import Question from './Question';
 
 class QuizPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -43,10 +43,12 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
       .map((a) => (a.correctAnswer === a.answer))
       .filter((i) => (i === true)).length;
 
-    this.setState({
-      showAlert: true,
-      correctAnswers
+    this.props.setResults({
+      correctAnswers,
+      timeElapsed: 0,
     });
+
+    this.props.router.push('/results');
   }
 
   render() {
@@ -61,12 +63,6 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
         <div>
           <Button onClick={this.submitQuiz}>Submit</Button>
         </div>
-        <SweetAlert
-          show={this.state.showAlert}
-          title="Results"
-          text={`Correct Answers: ${this.state.correctAnswers} Time Elapsed: 0`}
-          onConfirm={() => this.setState({ showAlert: false })}
-        />
       </div>
     );
   }
@@ -84,6 +80,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getQuestions: bindActionCreators(getQuestions, dispatch),
     setAnswer: bindActionCreators(setAnswer, dispatch),
+    setResults: bindActionCreators(setResults, dispatch),
   };
 }
 

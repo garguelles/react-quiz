@@ -8,10 +8,15 @@ import { fromJS } from 'immutable';
 import {
   GET_QUESTIONS_FULFILLED,
   SET_ANSWER,
+  SET_RESULTS,
 } from './constants';
 
 const initialState = fromJS({
   ui: {
+    results: {
+      correctAnswers: 0,
+      timeElapsed: 0,
+    },
     answers: [],
   },
   data: {
@@ -44,6 +49,9 @@ function quizPageReducer(state = initialState, action) {
       }
 
       return state.updateIn(['ui', 'answers'], (answers) => answers.push(fromJS(action.payload)));
+
+    case SET_RESULTS:
+      return state.setIn(['ui', 'results'], fromJS(action.payload));
 
     default:
       return state;

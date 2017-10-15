@@ -24,12 +24,17 @@ const Wrapper = styled(Flex)`
 `;
 
 export default class HomePage extends React.PureComponent {
+
+  startQuiz = () => {
+    this.props.router.push('/quiz');
+  }
+
   render() {
     return (
       <Wrapper justify="center" column>
         <Box width={1 / 1} px="1em">
           <Content>
-            <Button>Start Quiz</Button>
+            <Button onClick={this.startQuiz}>Start Quiz</Button>
           </Content>
         </Box>
       </Wrapper>
