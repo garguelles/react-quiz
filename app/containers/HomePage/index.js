@@ -12,6 +12,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { P, H1 } from 'components/Text';
+import Button from 'components/Button';
 import { Flex, Box } from 'grid-styled';
 import ReactSVG from 'react-svg';
 import logo from 'images/logo.svg';
@@ -27,12 +28,8 @@ export default class HomePage extends React.PureComponent {
     return (
       <Wrapper justify="center" column>
         <Box width={1 / 1} px="1em">
-          <SvgWrapper>
-            <ReactSVG path={logo} />
-          </SvgWrapper>
           <Content>
-            <H1 margin="10px 0 0 0" className="title">iStack Holdings</H1>
-            <P margin="10px 0 15px 0">A React Boilerplate for Pro.</P>
+            <Button>Play</Button>
           </Content>
         </Box>
       </Wrapper>

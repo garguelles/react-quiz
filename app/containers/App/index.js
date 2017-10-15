@@ -59,12 +59,7 @@ class App extends React.PureComponent {
               <meta property="og:description" content="REPLACE" />
               <meta property="og:img" content={ogImg} />
             </Helmet>
-            <AppNavTrigger toggleSideNav={this.props.toggleSideNav} />
             {React.Children.toArray(this.props.children)}
-            <SideNav
-              open={this.props.app.ui.sideNavOpen}
-              toggleSideNav={this.props.toggleSideNav}
-            />
           </main>
         </MuiThemeProvider>
       </ThemeProvider>
