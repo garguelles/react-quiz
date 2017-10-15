@@ -10,6 +10,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import randomstring from 'randomstring'
 import { getQuestionsFulfilled } from './actions';
 import { GET_QUESTIONS } from './constants';
+import _ from 'lodash';
 
 export function* getQuestions() {
   try {
@@ -17,7 +18,10 @@ export function* getQuestions() {
 
     // add unique ids
     const questions = response.data.results.map((q) => {
-      return Object.assign({}, q, { id: randomstring.generate(8) });
+      return Object.assign({}, q, {
+        id: randomstring.generate(8),
+        choices: _.shuffle(q.incorrect_answers.concat([q.correct_answer])),
+      });
     });
 
     yield put(getQuestionsFulfilled(questions));

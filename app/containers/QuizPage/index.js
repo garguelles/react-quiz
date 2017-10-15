@@ -33,14 +33,14 @@ class QuizPage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   renderQuestions() {
-    return this.props.questions.map(q => (
+    return this.props.QuizPage.data.questions.map(q => (
       <Question key={q.id} setAnswer={this.props.setAnswer} {...q} />
     ));
   }
 
   submitQuiz = () => {
     const answers = this.props.QuizPage.ui.answers;
-    const questions = this.props.questions;
+    const questions = this.props.QuizPage.data.questions;
 
     if (answers.length < questions.length) {
       return alert('please answer all questions');
